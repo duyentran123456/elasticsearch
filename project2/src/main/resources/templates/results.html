@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home page</title>
+</head>
+<body>
+	<h1>Elasticsearch Engine</h1>
+	<div>
+		<form method="GET" action="/search">
+			<input type="text" name="q">
+			<input type="submit" value="Search">
+		</form>
+	</div>
+	
+	<a href="/advanced_search">Advanced Search</a>
+
+	<div class="detail">
+		<p>About <span th:text="${appResponse.nResults}"></span> results (<span th:text="${appResponse.queryTime}"></span>)</p>
+	</div>
+
+	<tr th:each="headline: ${appResponse.results}">
+	    <td th:text="${headline.link}" />
+	    <br>
+	    <td th:utext="${headline.shortDescription}" />
+	    <br>
+	    <td th:utext="${headline.headline}"/>
+	    <br>
+	    <br>
+	</tr>
+	
+	<!-- pagination -->
+</body>
+</html>

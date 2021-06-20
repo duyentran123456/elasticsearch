@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Advanced search</title>
+</head>
+<body>
+	<h1>Elasticsearch</h1>
+	<h2>Advanced search</h2>
+	<form method="GET" action="/advanced_search">
+		<label for="q">Normal query</label>
+		<input type="text" name="q" id="q"><br><br>
+		
+		<label for="exact">Exact word:</label>
+		<input type="text" name="exact" id="exact"><br><br>
+		
+		<label for="not">Not have this word:</label>
+		<input type="text" name="not" id="not"><br><br>
+		
+		<label for="category">Category:</label>
+		<input type="text" name="category" id="category"><br><br>
+		
+		<label for="gtDate">From:</label>
+		<input type="date" name="gtDate" id="gtDate"><br><br>
+		
+		<label for="ltDate">To:</label>
+		<input type="date" name="ltDate" id="ltDate"><br><br>
+		
+		<input type="submit" value="Search">
+	</form>
+</body>
+</html>
