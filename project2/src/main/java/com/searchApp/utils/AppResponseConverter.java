@@ -9,6 +9,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 
+import com.searchApp.constant.HeadlineField;
 import com.searchApp.model.AppResponse;
 import com.searchApp.model.Headline;
 

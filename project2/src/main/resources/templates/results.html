@@ -3,32 +3,47 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home page</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/mystyle.css}" rel="stylesheet" />
 </head>
 <body>
-	<h1>Elasticsearch Engine</h1>
-	<div>
-		<form method="GET" action="/search">
-			<input type="text" name="q">
-			<input type="submit" value="Search">
-		</form>
-	</div>
+	<div class="container">
+		<h1><a href="/" style="text-decoration:none">Elasticsearch Engine</a></h1>
+		<div>
+			<form method="GET" action="/search">
+				<input type="text" name="q" autocomplete="off"> <input
+					type="submit" value="Search">
+			</form>
+		</div>
 	
-	<a href="/advanced_search">Advanced Search</a>
-
-	<div class="detail">
-		<p>About <span th:text="${appResponse.nResults}"></span> results (<span th:text="${appResponse.queryTime}"></span>)</p>
+		<a href="/advanced_search">Advanced Search</a>
+		<div class="detail">
+			<p>
+				About <span th:text="${appResponse.nResults}"></span> results (<span
+					th:text="${appResponse.queryTime}"></span>)
+			</p>
+		</div>
+		<br>
+		<div th:each="headline: ${appResponse.results}">
+			<div class="headline"><a th:href="${headline.link}" target=_blank> <span th:utext="${headline.headline}"></span></a></div>
+			<div class="description"><span th:text="${headline.date}" class="date"></span> <span th:utext="${headline.shortDescription}"></span></div>
+			<div class="authors">Authors: <span th:text="${headline.authors}"></span></div>
+			<div class="category"><span th:text="${headline.category}"></span></div>
+			<br>
+		</div>	
+		
+		<!-- pagination 
+		<ul class="pagination">
+			<li><a href="window.location.href">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+		</ul>
+		-->
 	</div>
-
-	<tr th:each="headline: ${appResponse.results}">
-	    <td th:text="${headline.link}" />
-	    <br>
-	    <td th:utext="${headline.shortDescription}" />
-	    <br>
-	    <td th:utext="${headline.headline}"/>
-	    <br>
-	    <br>
-	</tr>
-	
-	<!-- pagination -->
 </body>
 </html>

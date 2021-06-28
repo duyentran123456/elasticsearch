@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Home page</title>
+	<meta charset="ISO-8859-1">
+	<title>Home page</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />	
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jQuery.min.js}"></script>
 </head>
 <body>
-	<h1>Elasticsearch Engine</h1>
-	<div>
-		<form action="/search" method="GET"> 
-			<input type="text" name="q">
-			<input type="submit" value="Search">
-		</form>
+	<div class="container">
+		<h1><a href="/" style="text-decoration:none">Elasticsearch Engine</a></h1>
+		<div>
+			<form action="/search" method="GET">
+				<input type="text" name="q" autocomplete="off"> <input type="submit"
+					value="Search">
+			</form>
+			<a href="/advanced_search">Advanced Search</a>
+		</div>
 	</div>
+	<div class="footer"></div>
 </body>
 </html>

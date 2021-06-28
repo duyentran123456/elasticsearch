@@ -1,4 +1,4 @@
-package com.searchApp.utils;
+package com.searchApp.constant;
 
 public class HeadlineField {
 	public static String HEADLINE = "headline";

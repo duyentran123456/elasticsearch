@@ -3,30 +3,70 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Advanced search</title>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-	<h1>Elasticsearch</h1>
-	<h2>Advanced search</h2>
-	<form method="GET" action="/advanced_search">
-		<label for="q">Normal query</label>
-		<input type="text" name="q" id="q"><br><br>
-		
-		<label for="exact">Exact word:</label>
-		<input type="text" name="exact" id="exact"><br><br>
-		
-		<label for="not">Not have this word:</label>
-		<input type="text" name="not" id="not"><br><br>
-		
-		<label for="category">Category:</label>
-		<input type="text" name="category" id="category"><br><br>
-		
-		<label for="gtDate">From:</label>
-		<input type="date" name="gtDate" id="gtDate"><br><br>
-		
-		<label for="ltDate">To:</label>
-		<input type="date" name="ltDate" id="ltDate"><br><br>
-		
-		<input type="submit" value="Search">
-	</form>
+	
+	<div class="container">
+		<h1><a href="/" style="text-decoration:none">Elasticsearch Engine</a></h1>
+		<br><br>
+		<form method="GET" action="/advanced_search" autocomplete="off" class="form-horizontal">
+			<div class="form-group">
+				<label for="q" class="control-label col-sm-2">Normal query</label>
+				<div class="col-sm-10">
+				<input type="text" name="q" id="q" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="exact" class="control-label col-sm-2">Exact word</label>
+				<div class="col-sm-10">
+					<input type="text" name="exact" id="exact" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="not" class="control-label col-sm-2">Not have this word</label>
+				<div class="col-sm-10">
+					<input type="text" name="not" id="not" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="ui-widget">
+					<label for="category" class="control-label col-sm-2">Category</label>
+					<div class="col-sm-10">
+						<input type="text" name="category" id="category" autocomplete="off" class="form-control">
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="gtDate" class="control-label col-sm-2">From</label>				
+				<div class="col-sm-10">
+					<input type="date" name="gtDate" id="gtDate" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="ltDate" class="control-label col-sm-2">To</label>
+				<div class="col-sm-10">
+					<input type="date" name="ltDate" id="ltDate" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+	      			<button type="submit" class="btn btn-default">Search</button>
+	    		</div>
+			</div>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" th:src="@{/js/autocomplete.js}"></script>
 </body>
 </html>

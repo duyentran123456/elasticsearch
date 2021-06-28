@@ -1,10 +1,13 @@
 package com.searchApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.searchApp.constant.AppConstant;
 import com.searchApp.model.AppResponse;
@@ -26,7 +29,7 @@ public class HeadlineController {
 	@GetMapping(path = "/search")
 	public String search(@RequestParam(name = "q", required = false) String query,
 			@RequestParam(name = "page", required = false) String page, Model model) {
-		if (query== null || query.length() == 0)
+		if (isEmpty(query))
 			return "index";
 		int from = 0, size = AppConstant.PAGE_SIZE;
 		if(page == null || page.length() != 0) {
@@ -41,10 +44,8 @@ public class HeadlineController {
 		AppResponse appResponse = service.search(query, from, size);
 
 		if (appResponse == null) {
-			System.out.println("app response is null");
 			return "index";
 		}
-		System.out.println(appResponse.toString());
 		long nPages = appResponse.getNResults()/size;
 		model.addAttribute("appResponse", appResponse);
 		model.addAttribute("nPages", nPages);
@@ -62,8 +63,8 @@ public class HeadlineController {
 			@RequestParam(name = "gtDate", required = false) String gtDate,
 			@RequestParam(name = "ltDate", required = false) String ltDate,
 			@RequestParam(name = "page", required = false) String page, Model model) {
-		if (query == null || query.length() == 0)
-			return "advanced";
+		if(isEmpty(query) && isEmpty(exact) && isEmpty(not) && isEmpty(category) && isEmpty(gtDate) && isEmpty(ltDate))
+				return "advanced";
 		
 		int from = 0, size = AppConstant.PAGE_SIZE;
 		if(page == null || page.length() != 0) {
@@ -78,10 +79,8 @@ public class HeadlineController {
 		AppResponse appResponse = service.advancedSearch(query, exact, not, category, gtDate, ltDate, from, size);
 
 		if (appResponse == null) {
-			System.out.println("app response is null");
 			return "index";
 		}
-		System.out.println(appResponse.toString());
 		long nPages = appResponse.getNResults()/size;
 		model.addAttribute("appResponse", appResponse);
 		model.addAttribute("nPages", nPages);
@@ -91,6 +90,17 @@ public class HeadlineController {
 
 	
 	
-	// @GetMapping(path="/autocomplete")
-
+	@GetMapping(path="/autocomplete")
+	@ResponseBody
+	public List<String> autocomplete(@RequestParam(name="q", required=false) String keyword) {
+		if(isEmpty(keyword)) return null;
+		List<String> suggestions = service.autocomplete(keyword);
+		return suggestions;
+	}
+	
+	private boolean isEmpty(String param) {
+		if(param == null ) return true;
+		if(param.length() == 0) return true;
+		return false;
+	}
 }
